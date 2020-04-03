@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as firebase from 'firebase/app';
+import React, { FC, SyntheticEvent } from 'react';
+import firebase from 'firebase/app';
 
 interface SigninFormElements {
   email: HTMLInputElement;
@@ -7,8 +7,8 @@ interface SigninFormElements {
 }
 type SigninElements = SigninFormElements & HTMLFormControlsCollection;
 
-const SignIn: React.FC<{}> = () => {
-  function handleSignIn(event: React.SyntheticEvent) {
+const SignIn: FC<{}> = () => {
+  function handleSignIn(event: SyntheticEvent) {
     event.preventDefault();
     let target: HTMLFormElement = event.target as HTMLFormElement;
     let elements = target.elements as SigninElements;
@@ -61,7 +61,7 @@ const SignIn: React.FC<{}> = () => {
   );
 };
 
-const Unauthenticated: React.FC<{}> = () => {
+const Unauthenticated: FC<{}> = () => {
   return (
     <div className="m-4 grid grid-cols-2 gap-1">
       <SignIn />

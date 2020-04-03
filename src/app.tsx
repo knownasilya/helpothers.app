@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as firebase from 'firebase/app';
+import React, { FC } from 'react';
+import ReactDOM from 'react-dom';
+import firebase from 'firebase/app';
 import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
@@ -24,7 +24,7 @@ interface AppInput {
   message: string;
 }
 
-const App: React.FC<AppInput> = ({ message }) => (
+const App: FC<AppInput> = ({ message }) => (
   <FirebaseAuthProvider firebase={firebase} {...config}>
     <FirebaseAuthConsumer>
       {({ isSignedIn, user }) => {

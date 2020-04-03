@@ -1,11 +1,11 @@
-import * as React from 'react';
-import * as firebase from 'firebase/app';
+import React, { FC } from 'react';
+import firebase from 'firebase/app';
 
 interface AuthenticatedInput {
   user: object;
 }
 
-const Authenticated: React.FC<AuthenticatedInput> = ({ user }) => (
+const Authenticated: FC<AuthenticatedInput> = ({ user }) => (
   <div className="m-4">
     {JSON.stringify(user)}
     <br />
