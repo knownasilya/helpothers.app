@@ -28,19 +28,32 @@ const Unauthenticated: React.FC<UnauthenticatedInput> = () => {
           <label className="block" htmlFor="email">
             Email
           </label>
-          <input className="border" type="email" id="email" />
+          <input
+            className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+            type="email"
+            id="email"
+          />
         </div>
 
-        <div>
+        <div className="mt-2">
           <label className="block" htmlFor="password">
             Password
           </label>
-          <input className="border" type="password" id="password" />
+          <input
+            className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+            type="password"
+            id="password"
+          />
         </div>
 
-        <button className="p-2 bg-gray-300" type="submit">
-          Sign In
-        </button>
+        <div className="mt-2">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            Sign In
+          </button>
+        </div>
       </form>
     </div>
   );
