@@ -1,5 +1,6 @@
 import React, { FC, SyntheticEvent } from 'react';
 import firebase from 'firebase/app';
+import { RouteFC } from './app';
 
 interface SigninFormElements {
   email: HTMLInputElement;
@@ -61,7 +62,7 @@ const SignIn: FC<{}> = () => {
   );
 };
 
-const Unauthenticated: FC<{}> = () => {
+const Unauthenticated: FC<RouteFC> = () => {
   return (
     <div className="m-4 grid grid-cols-2 gap-1">
       <SignIn />

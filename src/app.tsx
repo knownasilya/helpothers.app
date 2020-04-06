@@ -5,9 +5,11 @@ import {
   FirebaseAuthProvider,
   FirebaseAuthConsumer,
 } from '@react-firebase/auth';
+import { Router } from '@reach/router';
 import 'firebase/auth';
 import './app.pcss';
-import Authenticated from './authenticated';
+import Authenticated from './authenticated/index';
+import InviteUser from './authenticated/invite-user';
 import Unauthenticated from './unauthenticated';
 
 const config = {
@@ -24,15 +26,32 @@ interface AppInput {
   message: string;
 }
 
-const App: FC<AppInput> = ({ message }) => (
-  <FirebaseAuthProvider firebase={firebase} {...config}>
-    <FirebaseAuthConsumer>
-      {({ isSignedIn, user }) => {
-        return isSignedIn ? <Authenticated user={user} /> : <Unauthenticated />;
-      }}
-    </FirebaseAuthConsumer>
-    <div className="m-4">{message}</div>
-  </FirebaseAuthProvider>
-);
+export interface RouteFC {
+  path: string;
+}
+
+const App: FC<AppInput> = ({ message }) => {
+  return (
+    <FirebaseAuthProvider firebase={firebase} {...config}>
+      <FirebaseAuthConsumer>
+        {({ isSignedIn, user }) => {
+          return isSignedIn ? (
+            <Router>
+              <Authenticated path="/" user={user}>
+                <InviteUser path="invite" user={user} />
+                <InviteUser path="other" user={user} />
+              </Authenticated>
+            </Router>
+          ) : (
+            <Router>
+              <Unauthenticated path="/" />
+            </Router>
+          );
+        }}
+      </FirebaseAuthConsumer>
+      <div className="m-4">{message}</div>
+    </FirebaseAuthProvider>
+  );
+};
 
 ReactDOM.render(<App message="Hello" />, document.getElementById('app'));
